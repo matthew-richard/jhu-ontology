@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- New XML document created with EditiX XML Editor (http://www.editix.com) at Mon May 15 21:12:22 EDT 2017 -->
+
+<!-- Add RDF root node. -->
+<rdf:RDF
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:org="http://www.w3.org/ns/org#"
+	xmlns:foaf="http://xmlns.com/foaf/0.1/"
+	xmlns:vcard="http://www.w3.org/2006/vcard/ns#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:owl="http://www.w3.org/2002/07/owl#">
+	
+	<!-- OWL Header -->
+	
+	<!-- OWL Class Defintion -->
+	
+	<rdf:Description rdf:about="https://apply.jhu.edu/">
+		<org:Organization>
+			<foaf:name>Admissions</foaf:name>
+			<org:hasSite>
+				<org:Site>
+					<foaf:name>Mason</foaf:name>
+					<vcard:geo>geo:39.325899,-76.621514</vcard:geo>
+				</org:Site>
+			</org:hasSite>
+		</org:Organization>
+	</rdf:Description>
+	<rdf:Description rdf:about="https://www.cs.jhu.edu/">
+		<org:Organization>
+			<foaf:name>Computer Science</foaf:name>
+			<org:hasSite>
+				<org:Site>
+					<foaf:name>Malone</foaf:name>
+					<vcard:geo>geo:39.326221,-76.620857</vcard:geo>
+				</org:Site>
+			</org:hasSite>
+		</org:Organization>
+	</rdf:Description>
+	<rdf:Description rdf:about="https://me.jhu.edu/">
+		<org:Organization>
+			<foaf:name>Mechanical Engineering</foaf:name>
+			<org:hasSite>
+				<org:Site>
+					<foaf:name>Latrobe</foaf:name>
+					<vcard:geo>geo:39.327724,-76.620749</vcard:geo>
+				</org:Site>
+			</org:hasSite>
+		</org:Organization>
+	</rdf:Description>
+</rdf:RDF>
