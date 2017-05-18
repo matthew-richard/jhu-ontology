@@ -51,8 +51,8 @@ def get_args():
     parser.add_argument("--data", type=str, required=True, help="The data to use for selecting or generating.")
     parser.add_argument("--mode", type=str, required=True, choices=["select", "generate"], 
                         help="Operating mode: select or generate.")
-    parser.add_argument("--model-file", type=str, required=True,
-                        help="The name of the model file to create/load.")
+    parser.add_argument("--org-file", type=str, required=True,
+                        help="The name of the organization (i.e. model) file to create/load.")
     parser.add_argument("--results-file", type=str, help="The results file to create.")
 
     # This is where new command line options are added
@@ -70,18 +70,18 @@ def check_args(args):
     if args.mode.lower() == "generate": # if in generate mode
         if args.results_file is None: # if no results file
             raise Exception("--results-file should be specified in mode \"generate\"") # ask user to specify results file
-        if not os.path.exists(args.model_file): # if model file does not exist
-            raise Exception("model file specified by --model-file does not exist.") # tell user model file does not exist
+        if not os.path.exists(args.model_file): # if org file does not exist
+            raise Exception("organization file specified by --org-file does not exist.") # tell user model file does not exist
 
 
 def select(instances, org_of_interest, number_of_majors):
     # Select the organization model to run on "data"
     # This is where new algorithms are added that subclass Generator
-    model = Selection() # Create variable model, and set model = the (instance of?) Selection() class
+    organization = Selection() # Create variable organization, and set organization = the (instance of?) Selection() class
         
-    model.select(instances, org_of_interest, number_of_majors) # Run the Selection() class's select function
+    organization.select(instances, org_of_interest, number_of_majors) # Run the Selection() class's select function
     
-    return model # Return (instance of?) Selection() class
+    return organization # Return (instance of?) Selection() class
 
 
 def write_results(generator, instances, feature_of_interest, results_file):
@@ -106,10 +106,10 @@ def main():
         # Select the organization (i.e. model).
         generator = select(instances, args.org_of_interest, args.number_of_majors) # Create variable generator, and set generator = ___ (output of select function)
         try:
-            with open(args.model_file, 'wb') as writer:
+            with open(args.org_file, 'wb') as writer:
                 pickle.dump(generator, writer)
         except IOError:
-            raise Exception("Exception while writing to the model file.")        
+            raise Exception("Exception while writing to the organization file.")        
         except pickle.PickleError:
             raise Exception("Exception while dumping pickle.")
             
@@ -120,10 +120,10 @@ def main():
         generator = None
         # Load the model.
         try:
-            with open(args.model_file, 'rb') as reader:
+            with open(args.org_file, 'rb') as reader:
                 generator = pickle.load(reader)
         except IOError:
-            raise Exception("Exception while reading the model file.")
+            raise Exception("Exception while reading the organization file.")
         except pickle.PickleError:
             raise Exception("Exception while loading pickle.")
             
