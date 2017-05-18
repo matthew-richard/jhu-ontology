@@ -54,7 +54,6 @@ def get_args():
     parser.add_argument("--model-file", type=str, required=True,
                         help="The name of the model file to create/load.")
     parser.add_argument("--results-file", type=str, help="The results file to create.")
-    parser.add_argument("--algorithm", type=str, help="The name of the algorithm for selecting.")
 
     # This is where new command line options are added
     parser.add_argument("--org_of_interest", type=str, help="The organization in which you are interested.", default="admissions")
@@ -68,21 +67,17 @@ def get_args():
 
 
 def check_args(args):
-    if args.mode.lower() == "select": # if in select mode
-        if args.algorithm is None: # if no algorithm
-            raise Exception("--algorithm should be specified in mode \"select\"") # ask user to specify algorithm
-    else: # if not in select mode (i.e. if in generate mode)
+    if args.mode.lower() == "generate": # if in generate mode
         if args.results_file is None: # if no results file
             raise Exception("--results-file should be specified in mode \"generate\"") # ask user to specify results file
         if not os.path.exists(args.model_file): # if model file does not exist
             raise Exception("model file specified by --model-file does not exist.") # tell user model file does not exist
 
 
-def select(instances, algorithm, org_of_interest, number_of_majors):
-    # Select the model using "algorithm" on "data"
+def select(instances, org_of_interest, number_of_majors):
+    # Select the organization model to run on "data"
     # This is where new algorithms are added that subclass Generator
-    if algorithm.lower() == 'selection': # when more algos added, this will separate into, for example, 'location' and 'professor'
-        model = Selection() # Create variable model, and set model = the (instance of?) Selection() class
+    model = Selection() # Create variable model, and set model = the (instance of?) Selection() class
         
     model.select(instances, org_of_interest, number_of_majors) # Run the Selection() class's select function
     
@@ -109,7 +104,7 @@ def main():
         instances = load_data(args.data, 0) # args.data = jhu.xml; thus, init variable instances = array of JHU orgs (output of load_data function)
         
         # Select the organization (i.e. model).
-        generator = select(instances, args.algorithm, args.org_of_interest, args.number_of_majors) # Create variable generator, and set generator = ___ (output of select function)
+        generator = select(instances, args.org_of_interest, args.number_of_majors) # Create variable generator, and set generator = ___ (output of select function)
         try:
             with open(args.model_file, 'wb') as writer:
                 pickle.dump(generator, writer)
