@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- New XML document created with EditiX XML Editor (http://www.editix.com) at Mon May 15 21:12:22 EDT 2017 -->
-
 <!-- Add RDF root node. -->
 <rdf:RDF
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -17,10 +15,10 @@
 	
 	<rdf:Description rdf:about="https://apply.jhu.edu/">
 		<org:Organization>
-			<foaf:name>Admissions</foaf:name>
+			<foaf:name>admissions</foaf:name>
 			<org:hasSite>
 				<org:Site>
-					<foaf:name>Mason</foaf:name>
+					<foaf:name>mason</foaf:name>
 					<vcard:geo>geo:39.325899,-76.621514</vcard:geo>
 				</org:Site>
 			</org:hasSite>
@@ -28,10 +26,10 @@
 	</rdf:Description>
 	<rdf:Description rdf:about="https://www.cs.jhu.edu/">
 		<org:Organization>
-			<foaf:name>Computer Science</foaf:name>
+			<foaf:name>computer science</foaf:name>
 			<org:hasSite>
 				<org:Site>
-					<foaf:name>Malone</foaf:name>
+					<foaf:name>malone</foaf:name>
 					<vcard:geo>geo:39.326221,-76.620857</vcard:geo>
 				</org:Site>
 			</org:hasSite>
@@ -39,10 +37,10 @@
 	</rdf:Description>
 	<rdf:Description rdf:about="https://me.jhu.edu/">
 		<org:Organization>
-			<foaf:name>Mechanical Engineering</foaf:name>
+			<foaf:name>mechanical engineering</foaf:name>
 			<org:hasSite>
 				<org:Site>
-					<foaf:name>Latrobe</foaf:name>
+					<foaf:name>latrobe</foaf:name>
 					<vcard:geo>geo:39.327724,-76.620749</vcard:geo>
 				</org:Site>
 			</org:hasSite>

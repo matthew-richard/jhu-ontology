@@ -15,11 +15,6 @@ class ClassificationLabel(Label):
         
     def __str__(self):
         return str(self._class_label)
-    
-class Cluster:
-    def __init__(self, instances, mean_vector):
-        self._instances = instances
-        self._mean_vector = mean_vector
 
 class FeatureVector:
     def __init__(self):
@@ -37,26 +32,14 @@ class Instance:
     def __init__(self, feature_vector, label):
         self._feature_vector = feature_vector
         self._label = label
-        
-class MeanVector:
-    def __init__(self):
-        self._mv = {}
-        pass
-        
-    def add(self, index, value):
-        self._mv[index] = value
-        pass
-        
-    def get(self, instances, index):
-        return self._mv.get(index, 0.0)
 
-# abstract base class for defining predictors
-class Predictor:
+# abstract base class for defining generators
+class Generator:
     __metaclass__ = ABCMeta
 
     @abstractmethod
-    def train(self, instances, online_training_iterations): pass
+    def select(self, instances, org_of_interest, number_of_majors): pass
     
     @abstractmethod
-    def predict(self, instance): pass
+    def generate(self, instance, feature_of_interest): pass
         
